@@ -11,11 +11,10 @@ high=[35,150,80,10.0,5.0,1.0,1.0,30.0,5,10,30.0]
 
 
 radar = Radar(params, low, high,round_int=[False]*len(params),
-              num_rings=4,  # the number of concentric circles (excluding center circle)
-              # if the ring_width is more than the center_circle_radius then
-              # the center circle radius will be wider than the width of the concentric circles
+              num_rings=4,  # numero di cerchi da visualizzare nel bulls eye (escluso il centro)
               ring_width=1, center_circle_radius=1)
 
+#Presi alcuni font online
 URL1 = ('https://raw.githubusercontent.com/googlefonts/SourceSerifProGFVersion/main/fonts/'
         'SourceSerifPro-Regular.ttf')
 serif_regular = FontManager(URL1)
@@ -31,12 +30,13 @@ URL5 = ('https://raw.githubusercontent.com/google/fonts/main/apache/robotoslab/'
         'RobotoSlab%5Bwght%5D.ttf')
 robotto_bold = FontManager(URL5)
 
+#valori di numerici assegnati secondo l'ordine di params presi su https://urlis.net/9syvn8c5 (shortlink di FbRef)"
 lautaro_values2021=[17,107,37,3.76,1.30,0.14,0.41,14.9,0,2,15.2]
 lautaro_values2022=[21,112,47,4.42,1.85,0.16,0.38,13.8,0,3,20.9]
 
 
 # plot radar
-# creating the figure using the grid function from mplsoccer:
+# creazione del radar con mplsoccer:
 fig, axs = grid(figheight=14, grid_height=0.915, title_height=0.06, endnote_height=0.025,
                 title_space=0, endnote_space=0, grid_key='radar', axis=False)
 
@@ -56,8 +56,7 @@ axs['radar'].scatter(vertices1[:, 0], vertices1[:, 1],
 axs['radar'].scatter(vertices2[:, 0], vertices2[:, 1],
                      c='#d80499', edgecolors='#6d6c6d', marker='o', s=150, zorder=2)
 
-# adding the endnote and title text (these axes range from 0-1, i.e. 0, 0 is the bottom left)
-# Note we are slightly offsetting the text from the edges by 0.01 (1%, e.g. 0.99)
+#endnote=note a margine. title=scritte
 endnote_text = axs['endnote'].text(0.99, 0.5, 'Inspired By: StatsBomb / Rami Moghadam', fontsize=15,
                                    fontproperties=robotto_thin.prop, ha='right', va='center')
 title1_text = axs['title'].text(0.01, 0.65, 'Lautaro Martinez', fontsize=25, color='#01c49d',
@@ -71,5 +70,5 @@ title3_text = axs['title'].text(0.99, 0.65, 'Lautaro Martinez', fontsize=25,
 title4_text = axs['title'].text(0.99, 0.25, 'Inter 2021/2022', fontsize=15,
                                 fontproperties=robotto_thin.prop,
                                 ha='right', va='center', color='#d80499')
-
+#print del plot
 print(plt.show())
